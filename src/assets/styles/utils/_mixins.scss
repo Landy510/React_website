@@ -12,3 +12,11 @@
     }
   }
 }
+
+@mixin textFontSize() {
+  @for $i from 1 through 5 {
+    .text-h#{$i} {
+      font-size: var(--text-h#{$i});
+    }
+  }
+}

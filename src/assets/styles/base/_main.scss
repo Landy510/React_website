@@ -24,4 +24,21 @@ button {
   font-weight: var(--font-w-regular);
 }
 
+.bg-primary {
+  background-color: var(--primary-color);
+}
+
+.bg-secondary {
+  background-color: var(--secondary-color);
+}
+
+.fw-medium {
+  font-weight: var(--font-w-medium);
+}
+
+.fw-regular {
+  font-weight: var(--font-w-regular);
+}
+
 @include headline();
+@include textFontSize();
