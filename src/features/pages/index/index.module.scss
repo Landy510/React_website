@@ -1,0 +1,35 @@
+.hero-image {
+  height: calc(100vh - 80px);
+  width: 100%;
+  background: linear-gradient(325deg, var(--primary-color) , transparent 75%) center / 100%, 
+    url('/src/assets/images/heoImage.jpg') center / cover;
+  position: relative;
+
+
+  .heroImage-text {
+    position: absolute;
+    right: 100px;
+    bottom: 290px;
+    font-family: var(--font-RubikMonoOne);
+    
+    h2 {
+      font-size: 60px;
+      position: relative;
+    }
+
+    h2:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 100%;
+      bottom: 0;
+      height: 3px;
+      background-color: var(--text-color-1);
+      transition: right 1s;
+    }
+
+    h2.active:before {
+      right: 0;
+    }
+  }
+}

@@ -40,5 +40,17 @@ button {
   font-weight: var(--font-w-regular);
 }
 
+.text-align-r {
+  text-align: right;
+}
+
+.text-align-l {
+  text-align: left;
+}
+
+.line-height-unset {
+  line-height: unset;
+}
+
 @include headline();
 @include textFontSize();

@@ -1,6 +1,5 @@
 import styles from './Header.module.scss';
 export default function Header() {
-  console.log('styles?', styles)
   return (
     <>
       <header className={[styles['header'], 'bg-primary'].join(' ')}>
