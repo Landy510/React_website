@@ -1,4 +1,5 @@
 import styles from './Header.module.scss';
+import logoImgUrl from '/src/assets/images/logo.png';
 export default function Header() {
   return (
     <>
@@ -8,7 +9,7 @@ export default function Header() {
             title='Ramble CrossFit'
           >
             <img 
-              src="/src/assets/images/logo.png" 
+              src={logoImgUrl} 
               alt="logo-image" 
               height={60}
             />
