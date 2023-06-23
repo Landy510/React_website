@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './productShowCase.module.scss';
 import PropTypes from 'prop-types'
 
 export function ProductShowCase({title, imgUrl}) {
-  const [count, setCount] = useState(1);
+  // const [count, setCount] = useState(1);
 
-  function handleCountChange(value) {
-    setCount(value);
-  }
+  // function handleCountChange(value) {
+  //   setCount(value);
+  // }
 
   return (
     <div className={styles['container']}>
@@ -19,7 +19,7 @@ export function ProductShowCase({title, imgUrl}) {
         <img src={imgUrl} alt="" />
       </div>
 
-      <div className={styles['quantity-controls']}>
+      {/* <div className={styles['quantity-controls']}>
         <button onClick={() => setCount(count - 1)}> - </button>
         <input 
           type="text" 
@@ -29,7 +29,12 @@ export function ProductShowCase({title, imgUrl}) {
         <button onClick={() => setCount(count + 1)}> + </button>
       </div>
 
-      <button className={styles['add-btn']}>Add</button>
+      <button className={styles['add-btn']}>Add</button> */}
+
+      <Link 
+        to={`/products/${title}`}
+        className={[styles['navigate-btn'], 'text-h2'].join(' ')}
+      >Product Info</Link>
     </div>
   )
 }

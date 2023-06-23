@@ -8,6 +8,7 @@ import {
 import App from './App.jsx'
 import { Index } from './features/pages/index/index.jsx';
 import { Products } from './features/pages/products/products.jsx';
+import { ProductDetail } from './features/pages/products/pages/productDetail/productDetail.jsx';
 // --- END ---
 
 import './index.scss'
@@ -23,7 +24,16 @@ const router = createHashRouter([
       },
       {
         path: '/products',
-        element: <Products />
+        children: [
+          {
+            index: true,
+            element: <Products />,
+          },
+          {
+            path: ':id',
+            element: <ProductDetail />
+          }
+        ]
       }
     ]
   }
