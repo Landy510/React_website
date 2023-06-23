@@ -7,6 +7,7 @@ import {
 // --- Route Component | START ---
 import App from './App.jsx'
 import { Index } from './features/pages/index/index.jsx';
+import { Products } from './features/pages/products/products.jsx';
 // --- END ---
 
 import './index.scss'
@@ -19,6 +20,10 @@ const router = createHashRouter([
       {
         index: true,
         element: <Index />
+      },
+      {
+        path: '/products',
+        element: <Products />
       }
     ]
   }

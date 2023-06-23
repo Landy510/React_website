@@ -1,5 +1,11 @@
 @import '../utils/mixins';
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: var(--font-family);
   font-size: 16px;
@@ -16,6 +22,26 @@ button {
   font-size: var(--text-button);
   line-height: 24px;
   font-weight: var(--font-w-regular);
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  display: block;
+}
+
+a:visited {
+  color: var(--text-color-1);
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .text-secondary-content {
