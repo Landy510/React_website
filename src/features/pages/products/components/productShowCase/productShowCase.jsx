@@ -3,11 +3,6 @@ import styles from './productShowCase.module.scss';
 import PropTypes from 'prop-types'
 
 export function ProductShowCase({title, imgUrl}) {
-  // const [count, setCount] = useState(1);
-
-  // function handleCountChange(value) {
-  //   setCount(value);
-  // }
 
   return (
     <div className={styles['container']}>
@@ -18,18 +13,6 @@ export function ProductShowCase({title, imgUrl}) {
       <div className={styles['img']}>
         <img src={imgUrl} alt="" />
       </div>
-
-      {/* <div className={styles['quantity-controls']}>
-        <button onClick={() => setCount(count - 1)}> - </button>
-        <input 
-          type="text" 
-          value={count}
-          onChange={e => handleCountChange(e.target.value)}
-        />
-        <button onClick={() => setCount(count + 1)}> + </button>
-      </div>
-
-      <button className={styles['add-btn']}>Add</button> */}
 
       <Link 
         to={`/products/${title}`}
