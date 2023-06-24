@@ -1,5 +1,6 @@
 import styles from './Header.module.scss';
 import logoImgUrl from '/src/assets/images/logo.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom';
 export default function Header() {
   return (
@@ -26,6 +27,14 @@ export default function Header() {
             <Link to={'products'}>products</Link>
           </li>
         </ul>
+
+
+        <Link 
+          to={'/cart'}
+          className={styles['cart-navigate']}
+        >
+          <FontAwesomeIcon icon="fa-solid fa-cart-plus" />
+        </Link>
       </header>
     </>
   )

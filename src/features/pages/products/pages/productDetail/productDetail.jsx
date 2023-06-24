@@ -5,7 +5,9 @@ import styles from './productDetail.module.scss';
 import product1Url from '@/assets/images/product_1.png';
 import product2Url from '@/assets/images/product_2.png';
 import product3Url from '@/assets/images/product_3.png';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { CartContext } from '@/shared/contexts/cartContext';
+
 
 const sourceData = [
   {
@@ -41,6 +43,8 @@ export function ProductDetail() {
   const {id} = useParams();
   const [obj, setObj] = useState(null);
   const [count, setCount] = useState(1);
+
+  const cartContext = useContext(CartContext);
 
   function handleCountChange(value) {
     setCount(value);
@@ -86,7 +90,12 @@ export function ProductDetail() {
             <button onClick={() => setCount(count + 1)}> + </button>
           </div>
 
-          <button className={[styles['add-btn'], 'text-h5'].join(' ')}>
+          <button 
+            className={[styles['add-btn'], 'text-h5'].join(' ')}
+            onClick={() => {
+              cartContext.addItem({id, title: obj.title, count})
+            }}
+          >
             <FontAwesomeIcon icon="fa-solid fa-cart-plus" />
             <span className='fw-bold'>ADD TO CART</span>
           </button>

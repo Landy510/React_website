@@ -1,5 +1,6 @@
 .header {
   display: flex;
+  align-items: center;
   h1 {
     padding: 10px 0;
     a {
@@ -43,5 +44,20 @@
     .option:hover::before {
       right: 0;
     }
+  }
+
+  .cart-navigate {
+    display: flex;
+    align-items: center;
+    padding: 0 20px 0 40px;
+
+    svg {
+      transition: transform .5s;
+    }
+  }
+
+  .cart-navigate:hover svg {
+    cursor: pointer;
+    transform: rotate(-15deg);
   }
 }
