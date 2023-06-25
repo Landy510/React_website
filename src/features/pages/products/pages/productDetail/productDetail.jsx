@@ -93,7 +93,14 @@ export function ProductDetail() {
           <button 
             className={[styles['add-btn'], 'text-h5'].join(' ')}
             onClick={() => {
-              cartContext.addItem({id, title: obj.title, count})
+              cartContext.addItem(
+                {
+                  id, 
+                  title: obj.title, 
+                  count, 
+                  imgUrl: obj.imgUrls[0]
+                }
+              )
             }}
           >
             <FontAwesomeIcon icon="fa-solid fa-cart-plus" />

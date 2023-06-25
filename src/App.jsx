@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 function App() {
 
-  const addItem = ({id, title, count}) => {
+  const addItem = ({id, title, count, imgUrl}) => {
     setMetaCart(prev => {
       const target = prev.items.find(item => item.title === title)
       if(target) {
@@ -16,7 +16,8 @@ function App() {
               return {
                 id: target.id,
                 title: target.title,
-                count: target.count + count
+                count: target.count + count,
+                imgUrl: target.imgUrl
               }
             }
 
@@ -29,7 +30,7 @@ function App() {
       return {
         items: [
           ...prev.items,
-          {id, title, count}
+          {id, title, count, imgUrl}
         ],
         addItem
       }

@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import styles from './cart.module.scss';
 import { CartContext } from '@/shared/contexts/cartContext';
+import { CartShowCase } from './components/cartShowCase/cartShowCase';
+
 export function Cart(){
   const cartContext = useContext(CartContext);
 
@@ -11,8 +13,11 @@ export function Cart(){
           cartContext.items.map(item => {
             return (
               <li key={item.id}>
-                <h4>{ item.title }</h4>
-                <p>{ item.count }</p>
+                <CartShowCase 
+                  title={item.title}
+                  count={item.count}
+                  imgUrl={item.imgUrl}
+                />
               </li>
             )
           })
