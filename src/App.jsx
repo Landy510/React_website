@@ -6,6 +6,16 @@ import { useState } from 'react';
 
 function App() {
 
+  const removeItem = (title) => {
+    setMetaCart(prev => {
+      return {
+        items: prev.items.filter(item => item.title !== title),
+        addItem,
+        removeItem
+      }
+    })
+  }
+
   const addItem = ({id, title, count, imgUrl}) => {
     setMetaCart(prev => {
       const target = prev.items.find(item => item.title === title)
@@ -23,7 +33,8 @@ function App() {
 
             return item
           }),
-          addItem
+          addItem,
+          removeItem
         }
       }
 
@@ -32,7 +43,8 @@ function App() {
           ...prev.items,
           {id, title, count, imgUrl}
         ],
-        addItem
+        addItem,
+        removeItem
       }
       
     })
@@ -40,7 +52,8 @@ function App() {
 
   const [metaCart, setMetaCart] = useState({
     items: cartData,
-    addItem
+    addItem,
+    removeItem
   })
 
 
