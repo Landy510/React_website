@@ -1,0 +1,50 @@
+.form {
+  max-width: 600px;
+  margin: 20px auto 0 auto;
+
+  button[type=submit] {
+    display: block;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: var(--primary-color);
+    width: 100%;
+    text-align: center;
+  }
+
+  h2 {
+    text-align: center;
+    padding: 15px 0;
+    background-color: var(--secondary-color);
+  }
+
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 2px solid var(--text-color-1);
+    }
+
+    .cell {
+      width: 50%;
+      padding: 10px;
+
+      label {
+        margin-bottom: 10px;
+      }
+
+      &.full {
+        width: 100%;
+      }
+    }
+  }
+}

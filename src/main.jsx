@@ -12,6 +12,7 @@ import { Index } from './features/pages/index/index.jsx';
 import { Products } from './features/pages/products/products.jsx';
 import { ProductDetail } from './features/pages/products/pages/productDetail/productDetail.jsx';
 import { Cart } from './features/pages/cart/cart.jsx';
+import { StepTwo } from './features/pages/cart/pages/stepTwo/stepTwo.jsx';
 // --- END ---
 
 import './index.scss'
@@ -40,7 +41,16 @@ const router = createHashRouter([
       },
       {
         path: 'cart',
-        element: <Cart />
+        children: [
+          {
+            index: true,
+            element: <Cart />
+          },
+          {
+            path: 'register',
+            element: <StepTwo />
+          }
+        ]
       }
     ]
   }
