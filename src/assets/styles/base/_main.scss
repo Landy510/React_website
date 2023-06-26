@@ -82,5 +82,9 @@ img {
   line-height: unset;
 }
 
+.error-msg {
+  color: var(--danger-color);
+}
+
 @include headline();
 @include textFontSize();

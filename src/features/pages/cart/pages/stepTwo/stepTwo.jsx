@@ -1,24 +1,29 @@
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import PropTypes from 'prop-types'
 import styles from './stepTwo.module.scss';
+import { useState } from 'react';
 
 export function StepTwo(){
-  const [inputs, setInputs] = useState({});
+  const { 
+    register,
+    formState: { errors },
+    handleSubmit
+  } = useForm();
 
-  const handleChange = (evt) => {
-    const name = evt.target.name;
-    const value = evt.target.value;
-    setInputs(values => ({...values, [name]: value}))
+  const [wordsCount, setWordsCount] = useState(0);
+
+  const onSubmit = (data) => {
+    console.log(data)
   }
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    console.log(inputs)
+  const handleChange = async evt => {
+    setWordsCount(evt.target.value.trim(' ').length);
   }
 
   return (
     <form 
       className={styles['form']}
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <h2>Register</h2>
 
@@ -28,48 +33,60 @@ export function StepTwo(){
             <p>First Name</p>
             <input 
               type="text" 
-              name='fname'
-              value={inputs.fname || ''}
               placeholder='first name'
-              onChange={handleChange}
+              {...register('fname', {required: true})}
             />
           </label>
+
+          {
+            errors.fname?.type === 'required' && 
+            <p className='error-msg fw-bold'>required</p>
+          }
         </div>
         <div className={styles['cell']}>
           <label>
             <p>Last Name</p>
             <input 
               type="text" 
-              name='lname'
-              value={inputs.lname || ''}
               placeholder='last name'
-              onChange={handleChange}
+              {...register('lname', {required: true})}
             />
           </label>
+          {
+            errors.lname?.type === 'required' && 
+            <p className='error-msg fw-bold'>required</p>
+          }
         </div>
         <div className={[styles['cell'], styles['full']].join(' ')}>
           <label>
             <p>Email Address</p>
             <input 
               type="email"
-              name='email'
-              value={inputs.email || ''}
-              onChange={handleChange}
+              {...register('email', {required: true})}
             />
           </label>
+          {
+            errors.email?.type === 'required' && 
+            <p className='error-msg fw-bold'>required</p>
+          }
         </div>
         <div className={[styles['cell'], styles['full']].join(' ')}>
           <label>
             <p>Contact Us</p>
             <textarea 
               type="text"
-              name="msg" 
               cols="30" 
               rows="10"
-              value={inputs.msg || ''}
-              onChange={handleChange}
+              {...register('msg', {maxLength: 100})}
+              onChange={e => handleChange(e)}
             ></textarea>
           </label>
+
+          <WordsCount 
+            count={wordsCount} 
+            maxLength={100}
+          />
+          
         </div>
       </div>
 
@@ -79,4 +96,21 @@ export function StepTwo(){
       >Submit</button>
     </form>
   )
+}
+
+function WordsCount({count, maxLength}) {
+  return <p>
+    <span className={
+      count > maxLength ? 
+      ['error-msg', 'fw-bold', 'text-h3'].join(' ') : 
+      []
+    }>
+      {count}
+    </span>
+    / {maxLength}
+  </p>
+}
+WordsCount.propTypes = {
+  count: PropTypes.number.isRequired,
+  maxLength: PropTypes.number.isRequired
 }
