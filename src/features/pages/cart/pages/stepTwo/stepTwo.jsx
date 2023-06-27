@@ -1,5 +1,4 @@
 import { useForm } from 'react-hook-form';
-import PropTypes from 'prop-types'
 import styles from './stepTwo.module.scss';
 import { useState } from 'react';
 
@@ -7,8 +6,16 @@ export function StepTwo(){
   const { 
     register,
     formState: { errors },
-    handleSubmit
-  } = useForm();
+    handleSubmit,
+  } = useForm({
+    mode: 'all',
+    defaultValues: {
+      fname: '',
+      lname: '',
+      email: '',
+      msgText: ''
+    }
+  });
 
   const [wordsCount, setWordsCount] = useState(0);
 
@@ -16,8 +23,12 @@ export function StepTwo(){
     console.log(data)
   }
 
-  const handleChange = async evt => {
+  const handleChange = evt => {
     setWordsCount(evt.target.value.trim(' ').length);
+  }
+
+  const isValid = () => {
+    return Object.keys(errors).length === 0
   }
 
   return (
@@ -37,7 +48,7 @@ export function StepTwo(){
               {...register('fname', {required: true})}
             />
           </label>
-
+          
           {
             errors.fname?.type === 'required' && 
             <p className='error-msg fw-bold'>required</p>
@@ -62,12 +73,20 @@ export function StepTwo(){
             <p>Email Address</p>
             <input 
               type="email"
-              {...register('email', {required: true})}
+              {...register('email', 
+                {
+                  required: true,
+                  pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
+                })}
             />
           </label>
           {
             errors.email?.type === 'required' && 
             <p className='error-msg fw-bold'>required</p>
+          }
+          {
+            errors.email?.type === 'pattern' && 
+            <p className='error-msg fw-bold'>pattern</p>
           }
         </div>
         <div className={[styles['cell'], styles['full']].join(' ')}>
@@ -77,40 +96,32 @@ export function StepTwo(){
               type="text"
               cols="30" 
               rows="10"
-              {...register('msg', {maxLength: 100})}
-              onChange={e => handleChange(e)}
+              {...register(
+                  'msgText', 
+                  {
+                    maxLength: 100,
+                    onChange: (e) => handleChange(e)
+                  }
+                )
+              }
             ></textarea>
           </label>
-
-          <WordsCount 
-            count={wordsCount} 
-            maxLength={100}
-          />
-          
+          <p>
+            <span
+              className={
+                errors.msgText?.type === 'maxLength' ?
+                ['error-msg', 'fw-bold', 'text-h3'].join(' ') : []
+              }
+            >{wordsCount}</span> /100
+          </p>
         </div>
       </div>
 
       <button 
         type='submit'
-        className='text-h4'
+        className='text-h4 bg-primary'
+        disabled={!isValid()}
       >Submit</button>
     </form>
   )
-}
-
-function WordsCount({count, maxLength}) {
-  return <p>
-    <span className={
-      count > maxLength ? 
-      ['error-msg', 'fw-bold', 'text-h3'].join(' ') : 
-      []
-    }>
-      {count}
-    </span>
-    / {maxLength}
-  </p>
-}
-WordsCount.propTypes = {
-  count: PropTypes.number.isRequired,
-  maxLength: PropTypes.number.isRequired
 }

@@ -44,6 +44,15 @@ img {
   display: block;
 }
 
+button:disabled {
+  background-color: var(--text-color-2);
+  color: #fff;
+}
+
+button:disabled:hover {
+  cursor:unset ;
+}
+
 .text-secondary-content {
   font-size: var(--text-secondary-content);
   line-height: var(--lh-secondary-content);
@@ -56,6 +65,10 @@ img {
 
 .bg-secondary {
   background-color: var(--secondary-color);
+}
+
+.bg-disabled {
+  background-color: var(--text-color-2);
 }
 
 .fw-bold {
