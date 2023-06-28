@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import styles from './stepTwo.module.scss';
 import { useState } from 'react';
 
@@ -17,10 +18,13 @@ export function StepTwo(){
     }
   });
 
+  const navigate =  useNavigate();
+
   const [wordsCount, setWordsCount] = useState(0);
 
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(data);
+    navigate('/cart/completed');
   }
 
   const handleChange = evt => {
@@ -31,6 +35,7 @@ export function StepTwo(){
     return Object.keys(errors).length === 0
   }
 
+  
   return (
     <form 
       className={styles['form']}

@@ -4,6 +4,7 @@ import styles from './cart.module.scss';
 import { CartContext } from '@/shared/contexts/cartContext';
 import { CartShowCase } from './components/cartShowCase/cartShowCase';
 
+
 export function Cart(){
   const cartContext = useContext(CartContext);
 
